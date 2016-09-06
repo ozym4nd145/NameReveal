@@ -48,11 +48,15 @@ body{
     position: absolute;
     height: 100%;
     width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 .middle {
     display: table-cell;
     vertical-align: middle;
+    margin: 0;
+    padding: 0;
 }
 
 .inner {
@@ -72,4 +76,6 @@ body
     background-color: #000000;
     background-size: cover;
     background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
 }
