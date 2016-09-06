@@ -12,7 +12,7 @@ var text = document.querySelector("#name");
 var counter = 0;
 var s = ["█", "▓", "▒", "░", "█", "▓", "▒", "░", "█", "▓", "▒", "░", "<", ">", "/", "_","漢","字"];
 var t = ["汉","字","/","漢","字","_",">","<"];
-var fuzzy = baffle(text, {characters: s, speed: 100}).start();
+var fuzzy = baffle(text, {characters: s, speed: 75}).start();
 
 document.addEventListener('keydown',function(event)
 {
@@ -20,29 +20,36 @@ document.addEventListener('keydown',function(event)
     if(event.code === "Space")
     {
         event.preventDefault();
-        if(counter % 2 === 0)
-        {
-            index = Math.floor(Math.random() * namesList.length);
-
-            while(isCalled[index])
-            {
-                index = Math.floor(Math.random() * namesList.length);
-            }
-
-            isCalled[index] = true;
-
-            fuzzy.text(function(n){
-                return namesList[index];
-            });
-
-            fuzzy.reveal(1000,500);
-        }
-        else {
-            fuzzy.text(function(n){
-                return "############";
-            });
-            fuzzy.start();
-        }
-        counter++;
+        toggle();
     }
 });
+
+document.addEventListener("click", toggle);
+
+function toggle()
+{
+    if(counter % 2 === 0)
+    {
+        index = Math.floor(Math.random() * namesList.length);
+
+        while(isCalled[index])
+        {
+            index = Math.floor(Math.random() * namesList.length);
+        }
+
+        isCalled[index] = true;
+
+        fuzzy.text(function(n){
+            return namesList[index];
+        });
+
+        fuzzy.reveal(1000);
+    }
+    else {
+        fuzzy.text(function(n){
+            return "< ACES_ACM />";
+        });
+        fuzzy.start();
+    }
+    counter++;
+}
